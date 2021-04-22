@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 
 class TemplateConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "gtest/1.10.0"
+    requires = [ "gtest/1.10.0", "spdlog/1.8.5" ]
     generators = "cmake_find_package"
 
     name = "Template"

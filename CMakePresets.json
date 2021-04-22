@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 19,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "conan-on",
+      "hidden": true,
+      "cacheVariables": {
+        "ENABLE_CONAN": {
+          "type": "BOOL",
+          "value": "ON"
+        }
+      }
+    },
+    {
+      "name": "conan-off",
+      "hidden": true,
+      "cacheVariables": {
+        "ENABLE_CONAN": {
+          "type": "BOOL",
+          "value": "OFF"
+        }
+      }
+    },
+    {
+      "name": "testing-on",
+      "hidden": true,
+      "cacheVariables": {
+        "TESTING": {
+          "type": "BOOL",
+          "value": "ON"
+        }
+      }
+    },
+    {
+      "name": "testing-off",
+      "hidden": true,
+      "cacheVariables": {
+        "TESTING": {
+          "type": "BOOL",
+          "value": "OFF"
+        }
+      }
+    },
+    {
+      "name": "ninja",
+      "hidden": true,
+      "generator": "Ninja"
+    },
+    {
+      "name": "debug-type",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
+        }
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Application Debugging",
+      "description": "No testing - just application debug",
+      "inherits": [ "conan-on", "ninja", "debug-type", "testing-off" ],
+      "binaryDir": "${sourceDir}/build/debug"
+    },
+    {
+      "name": "debug-testing",
+      "displayName": "Application Debug Testing",
+      "description": "No application executable - just unit tests",
+      "inherits": [ "conan-on", "ninja", "debug-type", "testing-on" ],
+      "binaryDir": "${sourceDir}/build/debug-testing"
+    }
+  ]
+}
